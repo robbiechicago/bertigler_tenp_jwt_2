@@ -1,0 +1,34 @@
+<h1>Seasons</h1>
+
+<div>
+  <md-checkbox ng-model="ac.show_seasons" aria-label="Show seasons">
+    Show seasons
+  </md-checkbox>
+  <table ng-if="ac.show_seasons">
+    <tr>
+      <th>Season</th>
+      <th>First week begins</th>
+      <th>Last week begins</th>
+    </tr>
+    <tr ng-repeat="season in ac.seasons">
+      <td>{{ season.season }}</td>
+      <td ng-bind="season.date_of_first_saturday_fixture | date:'EEE d MMM yyyy'"></td>
+      <td ng-bind="season.date_of_last_saturday_fixture | date:'EEE d MMM yyyy'"></td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <md-checkbox ng-model="ac.show_create_season" aria-label="Create a season">
+    Create a season
+  </md-checkbox>
+  <form ng-if="ac.show_create_season">
+    <label for="new_season">Season name</label>
+    <input ng-model="seas.name" type="text" name="new_season"><br />
+    <label for="first_sat">First Sat Fixture</label>
+    <input ng-model="seas.first" type="text" name="first_sat"><br />
+    <label for="last_sat">Last Sat Fixture</label>
+    <input ng-model="seas.last" type="text" name="last_sat"><br />
+    <input type="submit" name="seas-submit" ng-click="hc.new_season(seas)">
+  </form>
+</div>

@@ -1,0 +1,39 @@
+<div>
+  <h4>Here are this week's fixtures</h4>
+  <table>
+    <tr>
+      <th>Home</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Away</th>
+      <th></th>
+      <th>Result</th>
+      <th>Score</th>
+    </tr>
+    <tr ng-repeat="game in hc.games | filter:{season:hc.season.season.season, week:hc.current_week}">
+      <td>{{ game.home_team }}</td>
+      <td>
+        <select ng-model="hc.home_goals[$index+1]" ng-change="hc.get_hda()" ng-options="goal as goal for goal in hc.goals_options">
+          <option value="" ng-selected="selected">-</option>
+        </select>
+      </td>
+      <td> v </td>
+      <td>
+        <select ng-model="hc.away_goals[$index+1]" ng-change="hc.get_hda()" ng-options="goal as goal for goal in hc.goals_options">
+          <option value="" ng-selected="selected">-</option>
+        </select>
+      </td>
+      <td>{{ game.away_team }}</td>
+      <td>{{ hc.hda[$index+1] }}</td>
+      <td>
+        <select ng-model="hc.result_points[$index+1]" ng-change="hc.sum_points()" ng-options="point as point for point in hc.points_options"></select>
+      </td>
+      <td>
+        <select ng-model="hc.score_points[$index+1]" ng-change="hc.sum_points()" ng-options="point as point for point in hc.points_options"></select>
+      </td>
+    </tr>
+  </table>
+  <button ng-click="hc.submit_predictions()" ng-disabled="hc.points_total > 50">Submit Predictions</button>
+  {{ hc.points_total }}
+</div>

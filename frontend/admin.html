@@ -1,0 +1,21 @@
+<div ng-cloak layout="column" layout-padding>
+
+  <h1>Admin page</h1>
+  <p>Logged in only, and admins only please.</p>
+
+  <div>User: {{ ac.user }}</div>
+  <div>Admin?: {{ ac.isAdmin }}</div>
+  <br />
+
+  <span><md-button ng-click="ac.goHome()">go back to home</md-button></span>
+
+  <div ng-if="ac.isLoggedIn && ac.isAdmin">
+  <!-- <div ng-if="ac.isLoggedIn"> -->
+    
+    <div ng-include src="'partials/admin_users.html'"></div>
+    <div ng-include src="'partials/admin_weeks.html'"></div>
+    <div ng-include src="'partials/admin_seasons.html'"></div>
+    
+  </div>
+
+</div>

@@ -1,0 +1,21 @@
+<h1>League table</h1>
+
+<table>
+  <tr>
+    <th>Player</th>
+    <th>Num Results</th>
+    <th>Points From Results</th>
+    <th>Num Scores</th>
+    <th>Points From Scores</th>
+    <th>Total Score</th>
+  </tr>
+  <tr ng-repeat="player in lc.leeg | orderBy:'-total_points'">
+
+    <td>{{ player.username }}</td>
+    <td>{{ player.correct_results }}</td>
+    <td>{{ player.result_points }}</td>
+    <td>{{ player.correct_scores }}</td>
+    <td>{{ player.score_points }}</td>
+    <td>{{ player.total_points }}</td>
+  </tr>
+</table>

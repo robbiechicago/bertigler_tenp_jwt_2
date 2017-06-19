@@ -1,0 +1,13 @@
+<h1>Login</h1>
+  <form>
+    <label for="register_username">Username</label>
+    <input ng-model="user_login.name" type="text" name="register_username">
+    <label for="register_password">Password</label>
+    <input ng-model="user_login.password" type="text" name="register_password">
+    <input type="submit" name="register-submit" ng-click="uc.login_user(user_login)">
+  </form>
+
+  <p>Am I logged in?  {{ logged_in }}</p>
+  <button ng-click="uc.getUserStatus()">click me!</button>
+  user:  {{ user }}
+</div>

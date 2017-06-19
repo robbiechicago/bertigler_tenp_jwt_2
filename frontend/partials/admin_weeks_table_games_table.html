@@ -1,0 +1,12 @@
+<center>
+  <table>
+    <tr>
+      <th>Home</th>
+      <th>Away</th>
+    </tr>
+    <tr ng-repeat="game in ac.games | filter: ac.weekly_games_filter(week.season, week.play_week) | orderBy: 'game_number'">
+      <td>{{ game.home_team }}</td>
+      <td>{{ game.away_team }}</td>  
+    </tr>
+  </table>
+</center>

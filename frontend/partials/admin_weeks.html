@@ -1,0 +1,41 @@
+<h1>Weeks</h1>
+<md-checkbox ng-model="ac.show_weeks" aria-label="Show weeks">
+  Show weeks
+</md-checkbox>
+<div ng-if="ac.show_weeks">
+  <md-checkbox ng-model="ac.select_winterval" aria-label="Set Winterval weeks">
+    Set Winterval weeks
+  </md-checkbox>
+  <table>
+    <tr>
+      <th>Season</th>
+      <th>Calendar week</th>
+      <th>Play week</th>
+      <th>Monday</th>
+      <th>Sunday</th>
+      <th>Winterval</th>
+    </tr>
+    <tr ng-repeat-start="week in ac.weeks.weeks" class="{{ ac.weeks_row_class(week.season, week.play_week) }}">
+      <td ng-init="toggle[$index] = false" ng-click="toggle[$index] = !toggle[$index]">{{ week.season }}</td>
+      <td ng-init="toggle[$index] = false" ng-click="toggle[$index] = !toggle[$index]">{{ week.all_week }}</td>
+      <td ng-init="toggle[$index] = false" ng-click="toggle[$index] = !toggle[$index]">{{ week.play_week }}</td>
+      <td ng-init="toggle[$index] = false" ng-click="toggle[$index] = !toggle[$index]" ng-bind="week.week_start_mon | date:'EEE d MMM yyyy'"></td>
+      <td ng-init="toggle[$index] = false" ng-click="toggle[$index] = !toggle[$index]" ng-bind="week.week_end_sun | date:'EEE d MMM yyyy'"></td>
+      <td ng-if="ac.select_winterval">
+        <center>
+          <md-button class="md-raised md-primary" ng-click="ac.set_winterval(week.season, week.week_start_mon)" ng-if="!week.winterval_week">Set</md-button>  
+          <md-button class="md-raised" ng-click="ac.delete_winterval(week.winterval_week_id)" ng-if="week.winterval_week">Unset</md-button>  
+        </center>
+      </td>
+      <td ng-if="!ac.select_winterval">
+        <center>
+          <span ng-if="week.winterval_week">xx</span>
+        </center>
+      </td>
+    </tr ng-if="toggle[$index]">
+    <tr ng-repeat-end ng-if="toggle[$index]">
+      <td colspan="6"><div ng-include src="'partials/admin_weeks_table_games_table.html'"></div></td>
+    </tr ng-if="toggle[$index]">
+    </tr>
+  </table>
+</div>

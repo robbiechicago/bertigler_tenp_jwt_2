@@ -1,0 +1,32 @@
+<h1>tenpredict!</h1>
+
+<button ng-click="hc.goAdmin()">go to admin page</button>
+<br /><br />
+<button ng-click="hc.goLeague()">League table</button>
+<p>Hello.  This is tenpredict.  1 + 1 = {{ 1+1 }}</p>
+
+<p>The current season is <span ng-if="hc.season.close_season">Close season heading into </span>{{ hc.season.season.season }}.  The current week is {{ hc.current_week }}</p>
+
+<div ng-controller="userCtrl as uc">
+  <h1>Register</h1>
+  <form>
+    <label for="register_email">Email</label>
+    <input ng-model="user.email" type="text" name="register_email">
+    <label for="register_username">Username</label>
+    <input ng-model="user.name" type="text" name="register_username">
+    <label for="register_password">Password</label>
+    <input ng-model="user.password" type="text" name="register_password">
+    <input type="submit" name="register-submit" ng-click="uc.register_user(user)">
+  </form>
+
+<p>
+  Am I logged in?  {{hc.logged_in}}<br />
+  Who am I logged in as? {{ hc.user }}
+</p>
+
+
+<div ng-if="!hc.logged_in" ng-include src="'partials/home_login.html'"></div>
+<div ng-if="hc.logged_in" ng-include src="'partials/home_logout.html'"></div>
+<div ng-include src="'partials/home_pred_form.html'"></div>
+
+
